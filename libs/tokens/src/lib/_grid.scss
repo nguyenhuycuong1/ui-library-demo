@@ -1,0 +1,118 @@
+@use 'sass:math';
+
+// ─── Breakpoints (SCSS vars — usable in @media queries) ────────────────────
+$bp-sm:  576px  !default;
+$bp-md:  768px  !default;
+$bp-lg:  992px  !default;
+$bp-xl:  1200px !default;
+$bp-2xl: 1400px !default;
+
+$grid-columns: 12 !default;
+
+$grid-breakpoints: (
+  'sm':  $bp-sm,
+  'md':  $bp-md,
+  'lg':  $bp-lg,
+  'xl':  $bp-xl,
+  '2xl': $bp-2xl,
+) !default;
+
+// ─── Internal mixin ────────────────────────────────────────────────────────
+@mixin _make-col($size, $cols: $grid-columns) {
+  flex: 0 0 auto;
+  width: math.percentage(math.div($size, $cols));
+}
+
+// ─── Container ─────────────────────────────────────────────────────────────
+.container {
+  width: 100%;
+  padding-inline: calc(var(--grid-gutter) / 2);
+  margin-inline: auto;
+
+  @media (min-width: #{$bp-sm})  { max-width: var(--container-sm);  }
+  @media (min-width: #{$bp-md})  { max-width: var(--container-md);  }
+  @media (min-width: #{$bp-lg})  { max-width: var(--container-lg);  }
+  @media (min-width: #{$bp-xl})  { max-width: var(--container-xl);  }
+  @media (min-width: #{$bp-2xl}) { max-width: var(--container-2xl); }
+}
+
+.container-fluid {
+  width: 100%;
+  padding-inline: calc(var(--grid-gutter) / 2);
+}
+
+// ─── Row ───────────────────────────────────────────────────────────────────
+// Negative margin cancels out the column padding so edge columns align flush.
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-inline: calc(var(--grid-gutter) / -2);
+
+  > * {
+    padding-inline: calc(var(--grid-gutter) / 2);
+    width: 100%;
+  }
+}
+
+// Gutter overrides — set on .row to control spacing between columns.
+// CSS custom property cascades into all child > * padding automatically.
+.g-0 { --grid-gutter: 0px;             }
+.g-1 { --grid-gutter: var(--sp-2);     }  // 4px
+.g-2 { --grid-gutter: var(--sp-4);     }  // 8px
+.g-3 { --grid-gutter: var(--sp-6);     }  // 16px (matches default)
+.g-4 { --grid-gutter: var(--sp-8);     }  // 24px
+.g-5 { --grid-gutter: var(--sp-9);     }  // 32px
+
+// ─── Base columns ──────────────────────────────────────────────────────────
+.col      { flex: 1 0 0%; }
+.col-auto { flex: 0 0 auto; width: auto; }
+
+@for $i from 1 through $grid-columns {
+  .col-#{$i} { @include _make-col($i); }
+}
+
+// ─── Responsive columns ────────────────────────────────────────────────────
+@each $name, $value in $grid-breakpoints {
+  @media (min-width: #{$value}) {
+    .col-#{$name}      { flex: 1 0 0%; }
+    .col-#{$name}-auto { flex: 0 0 auto; width: auto; }
+
+    @for $i from 1 through $grid-columns {
+      .col-#{$name}-#{$i} { @include _make-col($i); }
+    }
+
+    // Offset: push a column right by N columns
+    @for $i from 0 through ($grid-columns - 1) {
+      .offset-#{$name}-#{$i} {
+        margin-inline-start: if($i == 0, 0, math.percentage(math.div($i, $grid-columns)));
+      }
+    }
+  }
+}
+
+// ─── Row alignment helpers ─────────────────────────────────────────────────
+.align-items-start    { align-items: flex-start;  }
+.align-items-center   { align-items: center;       }
+.align-items-end      { align-items: flex-end;     }
+.align-items-stretch  { align-items: stretch;      }
+.align-items-baseline { align-items: baseline;     }
+
+.justify-content-start   { justify-content: flex-start;    }
+.justify-content-center  { justify-content: center;         }
+.justify-content-end     { justify-content: flex-end;       }
+.justify-content-between { justify-content: space-between;  }
+.justify-content-around  { justify-content: space-around;   }
+.justify-content-evenly  { justify-content: space-evenly;   }
+
+// ─── Column self-alignment ─────────────────────────────────────────────────
+.align-self-start   { align-self: flex-start; }
+.align-self-center  { align-self: center;      }
+.align-self-end     { align-self: flex-end;    }
+.align-self-stretch { align-self: stretch;     }
+
+// ─── Order ─────────────────────────────────────────────────────────────────
+.order-first { order: -1;             }
+.order-last  { order: $grid-columns;  }
+@for $i from 0 through 5 {
+  .order-#{$i} { order: $i; }
+}

@@ -1,0 +1,72 @@
+// Color tokens as SCSS variables (compile-time raw values).
+// Use CSS custom properties (var(--brand-600)) in component SCSS for runtime theming.
+// Use these SCSS values only where CSS custom properties cannot be used
+// (e.g., color-stop values in older APIs, SCSS @if comparisons).
+
+// Brand
+$brand-50:  #EFF6FF !default;
+$brand-100: #DBEAFE !default;
+$brand-200: #BFDBFE !default;
+$brand-300: #93C5FD !default;
+$brand-400: #60A5FA !default;
+$brand-500: #3B82F6 !default;
+$brand-600: #2563EB !default;
+$brand-700: #1D4ED8 !default;
+$brand-800: #1E40AF !default;
+$brand-900: #1E3A8A !default;
+
+// Neutrals
+$gray-0:   #FFFFFF !default;
+$gray-25:  #FCFCFD !default;
+$gray-50:  #F8FAFC !default;
+$gray-75:  #F1F5F9 !default;
+$gray-100: #E2E8F0 !default;
+$gray-200: #CBD5E1 !default;
+$gray-300: #94A3B8 !default;
+$gray-400: #64748B !default;
+$gray-500: #475569 !default;
+$gray-600: #334155 !default;
+$gray-700: #1E293B !default;
+$gray-800: #0F172A !default;
+$gray-900: #020617 !default;
+
+// Semantic
+$success-50:  #ECFDF5 !default;
+$success-500: #10B981 !default;
+$success-600: #059669 !default;
+$success-700: #047857 !default;
+
+$warning-50:  #FFFBEB !default;
+$warning-500: #F59E0B !default;
+$warning-600: #D97706 !default;
+$warning-700: #B45309 !default;
+
+$danger-50:  #FEF2F2 !default;
+$danger-500: #EF4444 !default;
+$danger-600: #DC2626 !default;
+$danger-700: #B91C1C !default;
+
+$info-50:  #EFF6FF !default;
+$info-500: #3B82F6 !default;
+$info-600: #2563EB !default;
+
+// Maps for iteration
+$brand-scale: (
+  50: $brand-50,
+  100: $brand-100,
+  200: $brand-200,
+  300: $brand-300,
+  400: $brand-400,
+  500: $brand-500,
+  600: $brand-600,
+  700: $brand-700,
+  800: $brand-800,
+  900: $brand-900,
+) !default;
+
+$semantic-colors: (
+  success: $success-600,
+  warning: $warning-600,
+  danger:  $danger-600,
+  info:    $info-600,
+) !default;

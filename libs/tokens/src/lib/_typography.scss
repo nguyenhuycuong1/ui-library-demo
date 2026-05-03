@@ -1,0 +1,45 @@
+// Typography tokens as SCSS variables.
+// Components should use CSS custom properties (var(--fs-base)) in their SCSS.
+
+$font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !default;
+$font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace !default;
+
+// Font sizes (px values match CSS custom properties)
+$fs-xs:   11px !default;
+$fs-sm:   12px !default;
+$fs-base: 13px !default;
+$fs-md:   14px !default;
+$fs-lg:   16px !default;
+$fs-xl:   18px !default;
+$fs-2xl:  20px !default;
+$fs-3xl:  24px !default;
+$fs-4xl:  30px !default;
+$fs-5xl:  36px !default;
+$fs-6xl:  48px !default;
+
+// Line heights
+$lh-tight:   1.2 !default;
+$lh-snug:    1.4 !default;
+$lh-normal:  1.5 !default;
+$lh-relaxed: 1.6 !default;
+
+// Font weights
+$fw-regular:  400 !default;
+$fw-medium:   500 !default;
+$fw-semibold: 600 !default;
+$fw-bold:     700 !default;
+
+// Type scale map (name → px)
+$type-scale: (
+  xs:   $fs-xs,
+  sm:   $fs-sm,
+  base: $fs-base,
+  md:   $fs-md,
+  lg:   $fs-lg,
+  xl:   $fs-xl,
+  2xl:  $fs-2xl,
+  3xl:  $fs-3xl,
+  4xl:  $fs-4xl,
+  5xl:  $fs-5xl,
+  6xl:  $fs-6xl,
+) !default;

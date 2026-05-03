@@ -1,0 +1,31 @@
+:host {
+  display: block;
+  width: 100%;
+  padding: 6px 10px;
+  font-size: var(--fs-base);
+  color: var(--text-primary);
+  background: transparent;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-standard);
+
+  &:hover:not(.is-disabled) {
+    background: var(--bg-hover);
+  }
+
+  &.is-selected {
+    background: var(--bg-selected);
+    color: var(--text-brand);
+    font-weight: var(--fw-medium);
+  }
+
+  &.is-active:not(.is-disabled) {
+    background: var(--bg-hover);
+    outline: none;
+  }
+
+  &.is-disabled {
+    color: var(--text-disabled);
+    cursor: not-allowed;
+  }
+}

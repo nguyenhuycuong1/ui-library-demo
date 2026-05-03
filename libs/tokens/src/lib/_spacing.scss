@@ -1,0 +1,37 @@
+// Spacing tokens (4px base grid).
+// Components use CSS custom properties: padding: var(--sp-5);
+
+$sp-0:  0    !default;
+$sp-1:  2px  !default;
+$sp-2:  4px  !default;
+$sp-3:  6px  !default;
+$sp-4:  8px  !default;
+$sp-5:  12px !default;
+$sp-6:  16px !default;
+$sp-7:  20px !default;
+$sp-8:  24px !default;
+$sp-9:  32px !default;
+$sp-10: 40px !default;
+$sp-11: 48px !default;
+$sp-12: 64px !default;
+$sp-13: 80px !default;
+$sp-14: 96px !default;
+
+// Spacing map for utility generation
+$spacing-scale: (
+  0:  $sp-0,
+  1:  $sp-1,
+  2:  $sp-2,
+  3:  $sp-3,
+  4:  $sp-4,
+  5:  $sp-5,
+  6:  $sp-6,
+  7:  $sp-7,
+  8:  $sp-8,
+  9:  $sp-9,
+  10: $sp-10,
+  11: $sp-11,
+  12: $sp-12,
+  13: $sp-13,
+  14: $sp-14,
+) !default;

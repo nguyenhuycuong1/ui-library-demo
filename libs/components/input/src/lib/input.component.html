@@ -1,0 +1,68 @@
+<div [ngClass]="fieldClasses">
+
+  @if (label) {
+    <label class="field__label">
+      {{ label }}
+      @if (required) {
+        <span class="field__required" aria-hidden="true">*</span>
+      }
+    </label>
+  }
+
+  @if (prefix || suffix) {
+    <!-- Input group with prefix / suffix -->
+    <div class="input-group" [class.input-group--sm]="size === 'sm'" [class.input-group--lg]="size === 'lg'">
+      @if (prefix) {
+        <span class="input-group__prefix">{{ prefix }}</span>
+      }
+      <input
+        #inputEl
+        [type]="type"
+        class="input"
+        [placeholder]="placeholder"
+        [disabled]="disabled"
+        [readonly]="readonly"
+        [attr.required]="required || null"
+        [attr.autocomplete]="autocomplete"
+        [attr.aria-invalid]="!!error || null"
+        [attr.aria-describedby]="error ? 'err-' + label : (hint ? 'hint-' + label : null)"
+        [value]="value"
+        (input)="handleInput($event)"
+        (blur)="handleBlur()" />
+      @if (suffix) {
+        <span class="input-group__suffix">{{ suffix }}</span>
+      }
+    </div>
+  } @else {
+    <!-- Plain input -->
+    <input
+      #inputEl
+      [type]="type"
+      [ngClass]="inputClasses"
+      [placeholder]="placeholder"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [attr.required]="required || null"
+      [attr.autocomplete]="autocomplete"
+      [attr.aria-invalid]="!!error || null"
+      [attr.aria-describedby]="error ? 'err-' + label : (hint ? 'hint-' + label : null)"
+      [value]="value"
+      (input)="handleInput($event)"
+      (blur)="handleBlur()" />
+  }
+
+  @if (hint && !error) {
+    <span class="field__help" [id]="'hint-' + label">{{ hint }}</span>
+  }
+
+  @if (error) {
+    <span class="field__error" role="alert" [id]="'err-' + label">
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M8 5v3.5M8 11h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      {{ error }}
+    </span>
+  }
+
+</div>

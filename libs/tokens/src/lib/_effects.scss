@@ -1,0 +1,37 @@
+// Effects: radius, shadows, motion, z-index.
+
+// Radius
+$r-xs:   2px    !default;
+$r-sm:   4px    !default;
+$r-md:   6px    !default;
+$r-lg:   8px    !default;
+$r-xl:   12px   !default;
+$r-2xl:  16px   !default;
+$r-full: 9999px !default;
+
+// Shadows (light mode values; dark mode overridden in tokens.css via [data-theme="dark"])
+$shadow-xs:    0 1px 2px 0 rgba(15, 23, 42, 0.04) !default;
+$shadow-sm:    0 1px 3px 0 rgba(15, 23, 42, 0.08), 0 1px 2px 0 rgba(15, 23, 42, 0.04) !default;
+$shadow-md:    0 4px 8px -2px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.04) !default;
+$shadow-lg:    0 12px 24px -4px rgba(15, 23, 42, 0.12), 0 4px 8px -2px rgba(15, 23, 42, 0.06) !default;
+$shadow-xl:    0 24px 48px -8px rgba(15, 23, 42, 0.18), 0 8px 16px -4px rgba(15, 23, 42, 0.08) !default;
+$shadow-focus: 0 0 0 3px rgba(37, 99, 235, 0.2) !default;
+
+// Motion
+$ease-standard: cubic-bezier(0.2, 0, 0.13, 1) !default;
+$ease-accel:    cubic-bezier(0.4, 0, 1, 1) !default;
+$ease-decel:    cubic-bezier(0, 0, 0.2, 1) !default;
+$dur-fast:   120ms !default;
+$dur-normal: 200ms !default;
+$dur-slow:   320ms !default;
+
+// Z-index scale
+$z-base:     0    !default;
+$z-dropdown: 1000 !default;
+$z-sticky:   1100 !default;
+$z-fixed:    1200 !default;
+$z-drawer:   1300 !default;
+$z-modal:    1400 !default;
+$z-popover:  1500 !default;
+$z-toast:    1600 !default;
+$z-tooltip:  1700 !default;

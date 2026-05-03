@@ -1,0 +1,55 @@
+// Reusable SCSS mixins for component authors.
+// Usage in a component SCSS file:
+//   @use 'libs/tokens/src/lib/mixins' as t;
+//   @include t.focus-ring();
+
+// Standard keyboard-focus ring matching the design system shadow token
+@mixin focus-ring($color: rgba(37, 99, 235, 0.2), $width: 3px) {
+  outline: 0;
+  box-shadow: 0 0 0 #{$width} #{$color};
+}
+
+// Danger-variant focus ring
+@mixin focus-ring-danger {
+  @include focus-ring(rgba(239, 68, 68, 0.18));
+}
+
+// Standard transition used on interactive controls
+@mixin transition($props: all, $dur: var(--dur-fast), $ease: var(--ease-standard)) {
+  transition: #{$props} #{$dur} #{$ease};
+}
+
+// Truncate text with ellipsis
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Visually hide an element but keep it accessible to screen readers
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Center content via flex
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Overlay backdrop
+@mixin backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-overlay);
+  z-index: var(--z-modal);
+}

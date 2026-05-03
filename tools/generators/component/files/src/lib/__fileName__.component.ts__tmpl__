@@ -1,0 +1,31 @@
+import {
+  ChangeDetectionStrategy,
+  Component,<% if (withCva) { %>
+  forwardRef,<% } %>
+  Input,
+} from '@angular/core';<% if (withCva) { %>
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { BaseFormControl } from '@ui/core';<% } %>
+import type { <%= className %>Variant } from './<%= fileName %>.types';
+
+@Component({
+  selector: 'ui-<%= fileName %>',
+  standalone: true,
+  imports: [],
+  templateUrl: './<%= fileName %>.component.html',
+  styleUrl: './<%= fileName %>.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,<% if (withCva) { %>
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => <%= className %>Component),
+      multi: true,
+    },
+  ],<% } %>
+})
+export class <%= className %>Component<% if (withCva) { %> extends BaseFormControl<string><% } %> {
+  @Input() variant: <%= className %>Variant = 'default';
+<% if (withCva) { %>
+  protected override emptyValue(): string { return ''; }
+<% } %>
+}

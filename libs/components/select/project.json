@@ -1,0 +1,8 @@
+{
+  "name": "select",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/components/select/src",
+  "projectType": "library",
+  "targets": {},
+  "tags": ["scope:components", "type:lib"]
+}

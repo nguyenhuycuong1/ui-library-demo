@@ -1,0 +1,74 @@
+<span class="section-kicker">Foundations</span>
+<h1 class="section-title">Design Tokens</h1>
+<p class="section-desc">
+  All visual decisions — color, type, spacing, motion — live as CSS custom properties
+  in <code>libs/tokens/src/lib/tokens.css</code>. Set <code>data-theme="dark"</code>
+  or <code>data-density="compact"</code> on <code>&lt;html&gt;</code> to switch modes
+  at runtime with zero JavaScript.
+</p>
+
+<!-- Brand palette -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin-bottom: var(--sp-4);">Brand Palette</h2>
+<div style="display: flex; gap: 4px; margin-bottom: var(--sp-9); flex-wrap: wrap;">
+  @for (swatch of brandScale; track swatch.step) {
+    <div style="flex: 1; min-width: 64px;">
+      <div [style.background]="swatch.hex"
+           style="height: 56px; border-radius: var(--r-md); margin-bottom: 6px;"></div>
+      <div style="font-size: 11px; font-weight: 500; color: var(--text-primary);">{{ swatch.step }}</div>
+      <div style="font-size: 10px; color: var(--text-tertiary); font-family: var(--font-mono);">{{ swatch.hex }}</div>
+    </div>
+  }
+</div>
+
+<!-- Semantic colors -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin-bottom: var(--sp-4);">Semantic Colors</h2>
+<div class="flex-row" style="margin-bottom: var(--sp-9);">
+  @for (s of semanticTokens; track s.name) {
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <div [style.background]="s.bg"
+           style="width: 32px; height: 32px; border-radius: var(--r-md);"></div>
+      <div>
+        <div style="font-size: var(--fs-sm); font-weight: 500;">{{ s.label }}</div>
+        <code style="font-size: 11px; color: var(--text-tertiary);">{{ s.name }}</code>
+      </div>
+    </div>
+  }
+</div>
+
+<!-- Type scale -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin-bottom: var(--sp-4);">Type Scale</h2>
+<div class="ex ex--col" style="margin-bottom: var(--sp-9);">
+  @for (t of typeScale; track t.token) {
+    <div style="display: flex; align-items: baseline; gap: var(--sp-6); width: 100%;">
+      <code style="width: 100px; font-size: 11px; color: var(--text-tertiary); flex-shrink: 0;">{{ t.label }}</code>
+      <span [style.fontSize]="'var(' + t.token + ')'">{{ t.sample }}</span>
+    </div>
+  }
+</div>
+
+<!-- Spacing -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin-bottom: var(--sp-4);">Spacing Scale</h2>
+<div class="ex ex--col" style="margin-bottom: var(--sp-9);">
+  @for (n of [1,2,3,4,5,6,7,8,9,10]; track n) {
+    <div style="display: flex; align-items: center; gap: var(--sp-5);">
+      <code style="width: 60px; font-size: 11px; color: var(--text-tertiary);">sp-{{ n }}</code>
+      <div style="background: var(--brand-200); border-radius: 2px; height: 8px;"
+           [style.width]="'var(--sp-' + n + ')'"></div>
+    </div>
+  }
+</div>
+
+<!-- Badges demo -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin-bottom: var(--sp-4);">Status Badges</h2>
+<div class="ex">
+  <ui-badge variant="neutral">Neutral</ui-badge>
+  <ui-badge variant="brand">Brand</ui-badge>
+  <ui-badge variant="success">Success</ui-badge>
+  <ui-badge variant="warning">Warning</ui-badge>
+  <ui-badge variant="danger">Danger</ui-badge>
+  <ui-badge variant="info">Info</ui-badge>
+  <ui-badge variant="solid-brand">Solid</ui-badge>
+  <ui-badge variant="outline">Outline</ui-badge>
+  <ui-badge variant="success" [dot]="true">Online</ui-badge>
+  <ui-badge variant="danger" [dot]="true">Offline</ui-badge>
+</div>

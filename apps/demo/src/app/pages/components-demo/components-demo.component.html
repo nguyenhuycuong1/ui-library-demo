@@ -1,0 +1,101 @@
+<span class="section-kicker">Components</span>
+<h1 class="section-title">Controls</h1>
+<p class="section-desc">
+  Standalone Angular components using CSS custom properties from the token system.
+  All components use <code>ChangeDetectionStrategy.OnPush</code> and are fully
+  tree-shakable.
+</p>
+
+<!-- ---- BUTTONS ---- -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-4);">
+  Button — Variants
+</h2>
+<div class="ex">
+  <ui-button variant="primary">Primary</ui-button>
+  <ui-button variant="default">Default</ui-button>
+  <ui-button variant="subtle">Subtle</ui-button>
+  <ui-button variant="link">Link</ui-button>
+  <ui-button variant="danger">Danger</ui-button>
+  <ui-button variant="danger-outline">Danger Outline</ui-button>
+</div>
+
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-4);">
+  Button — Sizes
+</h2>
+<div class="ex">
+  <ui-button variant="primary" size="sm">Small</ui-button>
+  <ui-button variant="primary" size="md">Medium</ui-button>
+  <ui-button variant="primary" size="lg">Large</ui-button>
+</div>
+
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-4);">
+  Button — States
+</h2>
+<div class="ex">
+  <ui-button variant="primary" [loading]="loading()" (clicked)="simulateLoad()">
+    {{ loading() ? 'Loading…' : 'Toggle Load' }}
+  </ui-button>
+  <ui-button variant="default" [disabled]="true">Disabled</ui-button>
+  <ui-button variant="primary" [block]="true">Block Button</ui-button>
+</div>
+
+<!-- ---- INPUTS ---- -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-4);">
+  Input — Standalone
+</h2>
+<div class="ex ex--col" style="max-width: 480px;">
+  <ui-input label="Full name" placeholder="Enter your name" />
+  <ui-input label="Email" type="email" placeholder="you@example.com" hint="We'll never share your email." />
+  <ui-input label="Password" type="password" placeholder="••••••••" />
+  <ui-input label="Amount" prefix="₫" suffix=".00" placeholder="0" />
+  <ui-input label="Disabled field" [disabled]="true" placeholder="Cannot edit" />
+</div>
+
+<!-- ---- REACTIVE FORM ---- -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-4);">
+  Input — Reactive Form (with validation)
+</h2>
+<form [formGroup]="form" (ngSubmit)="simulateSave()" novalidate>
+  <div class="stack" style="max-width: 480px; margin-bottom: var(--sp-6);">
+    <ui-input
+      label="Name"
+      formControlName="name"
+      placeholder="Full name"
+      [required]="true"
+      [error]="nameError" />
+    <ui-input
+      label="Email"
+      type="email"
+      formControlName="email"
+      placeholder="you@example.com"
+      [required]="true"
+      [error]="emailError" />
+    <ui-input
+      label="Phone"
+      type="tel"
+      formControlName="phone"
+      placeholder="0901234567"
+      hint="10–11 digits, no spaces" />
+  </div>
+  <div class="flex-row">
+    <ui-button variant="primary" type="submit" [loading]="saving()">
+      {{ saving() ? 'Saving…' : 'Save' }}
+    </ui-button>
+    <ui-button variant="default" type="button" (clicked)="form.reset()">Reset</ui-button>
+  </div>
+</form>
+
+<!-- ---- BADGES ---- -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-4);">
+  Badge — All Variants
+</h2>
+<div class="ex">
+  <ui-badge variant="neutral">Draft</ui-badge>
+  <ui-badge variant="brand">New</ui-badge>
+  <ui-badge variant="success" [dot]="true">Active</ui-badge>
+  <ui-badge variant="warning" [dot]="true">Pending</ui-badge>
+  <ui-badge variant="danger" [dot]="true">Failed</ui-badge>
+  <ui-badge variant="info">In Review</ui-badge>
+  <ui-badge variant="solid-brand">Beta</ui-badge>
+  <ui-badge variant="outline">Archived</ui-badge>
+</div>

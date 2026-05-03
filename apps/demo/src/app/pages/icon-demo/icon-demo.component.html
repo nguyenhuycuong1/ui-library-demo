@@ -1,0 +1,44 @@
+<span class="section-kicker">Components</span>
+<h1 class="section-title">Icons</h1>
+<p class="section-desc">
+  83 outline icons — 24×24 viewBox, stroke-based, adapts to <code>currentColor</code>.
+  Use <code>name</code>, <code>size</code>, and <code>variant</code> inputs.
+</p>
+
+<!-- Sizes -->
+<h2 style="font-size:var(--fs-lg);font-weight:var(--fw-semibold);margin:var(--sp-7) 0 var(--sp-3)">Sizes</h2>
+<div class="ex" style="gap:var(--sp-6);align-items:flex-end;margin-bottom:var(--sp-5)">
+  @for (s of sizes; track s.value) {
+    <div style="display:flex;flex-direction:column;align-items:center;gap:var(--sp-2)">
+      <ui-icon name="bell" [size]="s.value" />
+      <span style="font-size:var(--fs-xs);color:var(--text-secondary)">{{ s.label }}</span>
+    </div>
+  }
+</div>
+
+<!-- Variants -->
+<h2 style="font-size:var(--fs-lg);font-weight:var(--fw-semibold);margin:var(--sp-7) 0 var(--sp-3)">Variants</h2>
+<div class="ex" style="gap:var(--sp-6);align-items:flex-end;margin-bottom:var(--sp-5)">
+  @for (v of variants; track v.value) {
+    <div style="display:flex;flex-direction:column;align-items:center;gap:var(--sp-2);background:{{v.value === 'inverse' ? 'var(--text-primary)' : 'transparent'}};padding:var(--sp-2);border-radius:var(--r-sm)">
+      <ui-icon name="shield" size="lg" [variant]="v.value" />
+      <span style="font-size:var(--fs-xs);color:{{v.value === 'inverse' ? 'var(--text-inverse)' : 'var(--text-primary)'}}">{{ v.value }}</span>
+    </div>
+  }
+</div>
+
+<!-- Icon groups -->
+@for (group of groups; track group.title) {
+  <h2 style="font-size:var(--fs-lg);font-weight:var(--fw-semibold);margin:var(--sp-7) 0 var(--sp-3)">{{ group.title }}</h2>
+  <div class="ex" style="flex-wrap:wrap;gap:var(--sp-5);margin-bottom:var(--sp-5)">
+    @for (icon of group.icons; track icon.name) {
+      <div style="display:flex;flex-direction:column;align-items:center;gap:var(--sp-2);width:80px;cursor:default"
+           title="{{ icon.name }}">
+        <div style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:var(--r-md);background:var(--bg-subtle)">
+          <ui-icon [name]="icon.name" size="lg" />
+        </div>
+        <span style="font-size:var(--fs-xs);color:var(--text-secondary);text-align:center;line-height:1.3;word-break:break-all">{{ icon.label }}</span>
+      </div>
+    }
+  </div>
+}

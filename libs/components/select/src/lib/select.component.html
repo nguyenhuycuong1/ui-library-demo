@@ -1,0 +1,60 @@
+<div [ngClass]="fieldClasses">
+  @if (label) {
+    <label class="field__label">
+      {{ label }}
+      @if (required) {
+        <span class="field__required" aria-hidden="true">*</span>
+      }
+    </label>
+  }
+
+  <div
+    class="select__control"
+    [class.focus]="open()"
+    [attr.tabindex]="disabled ? null : 0"
+    [attr.aria-disabled]="disabled || null"
+    [attr.aria-readonly]="readonly || null"
+    [attr.aria-expanded]="open()"
+    role="combobox"
+    (mouseenter)="hovered.set(true)"
+    (mouseleave)="hovered.set(false)"
+    (click)="toggleOpen()"
+    (blur)="handleBlur()"
+    (keydown)="handleKeydown($event)">
+
+    @if (displayLabel) {
+      <span class="select__value">{{ displayLabel }}</span>
+    } @else {
+      <span class="select__placeholder">{{ placeholder }}</span>
+    }
+
+    <div class="select__icon-slot">
+      <ui-icon
+        name="chevron-down"
+        size="sm"
+        class="select__chevron"
+        [class.is-open]="open()"
+        [class.is-hidden]="showClearBtn"
+      ></ui-icon>
+      <ui-icon
+        name="x-circle"
+        size="sm"
+        class="select__clear"
+        [class.is-visible]="showClearBtn"
+        (click)="clearValue($event)"
+      ></ui-icon>
+    </div>
+
+  </div>
+
+  @if (error) {
+    <span class="field__error" role="alert">{{ error }}</span>
+  }
+</div>
+
+@if (open()) {
+  <!-- mousedown prevent stops blur firing before click registers on an option -->
+  <div class="select__options" (mousedown)="$event.preventDefault()">
+    <ng-content></ng-content>
+  </div>
+}

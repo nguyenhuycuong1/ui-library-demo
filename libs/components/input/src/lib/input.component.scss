@@ -1,0 +1,137 @@
+// Input / Field component styles.
+// All color/size values reference CSS custom properties from libs/tokens.
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+// ---- Field wrapper ----
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.field__label {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.field__required {
+  color: var(--danger-600);
+  margin-left: 2px;
+}
+
+.field__help {
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+}
+
+.field__error {
+  font-size: var(--fs-xs);
+  color: var(--danger-600);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+// ---- Input control ----
+.input {
+  height: var(--ctrl-h-md);
+  width: 100%;
+  padding: 6px 10px;
+  font-size: var(--fs-base);
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-md);
+  transition: all var(--dur-fast) var(--ease-standard);
+  font-family: inherit;
+  min-width: 0;
+  box-sizing: border-box;
+
+  &::placeholder { color: var(--text-tertiary); }
+
+  &:hover:not(:disabled):not(:focus) { border-color: var(--border-strong); }
+
+  &:focus {
+    outline: 0;
+    border-color: var(--brand-500);
+    box-shadow: var(--shadow-focus);
+  }
+
+  &:disabled {
+    background: var(--bg-subtle);
+    color: var(--text-disabled);
+    cursor: not-allowed;
+  }
+
+  &[readonly] { background: var(--bg-subtle); cursor: default; }
+}
+
+.input--sm { height: var(--ctrl-h-sm); }
+.input--lg { height: var(--ctrl-h-lg); padding: 0 12px; }
+
+// ---- Input group (prefix + suffix) ----
+.input-group {
+  display: flex;
+  align-items: stretch;
+  height: var(--ctrl-h-md);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-md);
+  transition: all var(--dur-fast) var(--ease-standard);
+  overflow: hidden;
+
+  &:focus-within {
+    border-color: var(--brand-500);
+    box-shadow: var(--shadow-focus);
+  }
+
+  .input {
+    height: 100%;
+    border: 0;
+    box-shadow: none;
+    background: transparent;
+    flex: 1;
+    border-radius: 0;
+
+    &:focus { box-shadow: none; }
+  }
+}
+
+.input-group--sm { height: var(--ctrl-h-sm); }
+.input-group--lg { height: var(--ctrl-h-lg); }
+
+.input-group__prefix,
+.input-group__suffix {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10px;
+  color: var(--text-tertiary);
+  background: var(--bg-subtle);
+  font-size: var(--fs-sm);
+  flex-shrink: 0;
+}
+
+.input-group__prefix { border-right: 1px solid var(--border-subtle); }
+.input-group__suffix { border-left:  1px solid var(--border-subtle); }
+
+// ---- Error state ----
+.field.is-error {
+  .input,
+  .input-group {
+    border-color: var(--danger-500);
+  }
+
+  .input:focus,
+  .input-group:focus-within {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18);
+  }
+}

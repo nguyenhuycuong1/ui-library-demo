@@ -1,0 +1,37 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1;
+
+  // ── Sizes ──────────────────────────────────────────────────────────────
+
+  &.icon--xs { --icon-size: 12px; }
+  &.icon--sm { --icon-size: 16px; }
+  &.icon--md { --icon-size: 20px; }
+  &.icon--lg { --icon-size: 24px; }
+  &.icon--xl { --icon-size: 32px; }
+
+  // ── Variants ───────────────────────────────────────────────────────────
+
+  &.icon--default { color: inherit; }
+  &.icon--muted   { color: var(--text-secondary); }
+  &.icon--brand   { color: var(--text-brand); }
+  &.icon--inverse { color: var(--text-inverse); }
+  &.icon--success { color: #16a34a; }
+  &.icon--warning { color: #d97706; }
+  &.icon--danger  { color: #dc2626; }
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  svg {
+    display: block;
+    width: var(--icon-size, 20px);
+    height: var(--icon-size, 20px);
+  }
+}

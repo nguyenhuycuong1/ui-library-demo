@@ -1,0 +1,8 @@
+{
+  "name": "tokens",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/tokens/src",
+  "projectType": "library",
+  "targets": {},
+  "tags": ["scope:tokens", "type:lib"]
+}

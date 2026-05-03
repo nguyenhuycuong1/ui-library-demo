@@ -1,0 +1,10 @@
+// Barrel: forward all token partials.
+// Use this when you need both SCSS variables and mixins:
+//   @use 'libs/tokens/src/lib/index' as t;
+
+@forward 'colors';
+@forward 'typography';
+@forward 'spacing';
+@forward 'effects';
+@forward 'mixins';
+@forward 'grid';

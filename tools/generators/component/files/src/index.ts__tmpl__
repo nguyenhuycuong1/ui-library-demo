@@ -1,0 +1,2 @@
+export { <%= className %>Component } from './lib/<%= fileName %>.component';
+export type { <%= className %>Variant } from './lib/<%= fileName %>.types';

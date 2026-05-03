@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "id": "component",
+  "title": "Create a new UI component library",
+  "description": "Scaffolds a standalone Angular component inside libs/components/<name>",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Component name in kebab-case (e.g. 'select', 'date-picker')",
+      "$default": { "$source": "argv", "index": 0 },
+      "x-prompt": "Component name (kebab-case):"
+    },
+    "variant": {
+      "type": "string",
+      "description": "Initial variant type",
+      "default": "default"
+    },
+    "withCva": {
+      "type": "boolean",
+      "description": "Extend BaseFormControl (ControlValueAccessor)?",
+      "default": false,
+      "x-prompt": "Integrate with Angular forms (ControlValueAccessor)?"
+    }
+  },
+  "required": ["name"]
+}

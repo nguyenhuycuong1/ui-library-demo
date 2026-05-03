@@ -1,0 +1,6 @@
+// <%= className %> component styles.
+// All values use CSS custom properties from libs/tokens.
+
+:host {
+  display: inline-flex;
+}

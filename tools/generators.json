@@ -1,0 +1,9 @@
+{
+  "generators": {
+    "component": {
+      "factory": "./generators/component/index",
+      "schema": "./generators/component/schema.json",
+      "description": "Scaffold a new UI component library in libs/components/<name>"
+    }
+  }
+}

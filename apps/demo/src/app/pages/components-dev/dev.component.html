@@ -1,0 +1,68 @@
+<span class="section-kicker">Components Dev</span>
+<h1 class="section-title">Select</h1>
+
+<!-- ---- Standalone ---- -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-4);">
+  Standalone — allowClear
+</h2>
+<div class="ex" style="max-width: 320px;">
+  <ui-select label="Options" placeholder="Select an option" [allowClear]="true"
+    [ngModel]="selected()" (ngModelChange)="selected.set($event)">
+    <ui-option value="option1">Option 1</ui-option>
+    <ui-option value="option2">Option 2</ui-option>
+    <ui-option value="option3">Option 3</ui-option>
+  </ui-select>
+</div>
+
+<!-- ---- Reactive Form ---- -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-4);">
+  Reactive Form — validation + allowClear
+</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+  <div class="stack" style="max-width: 320px; margin-bottom: var(--sp-6);">
+    <ui-select
+      label="Role"
+      placeholder="Select a role"
+      formControlName="role"
+      [required]="true"
+      [error]="roleError">
+      <ui-option value="developer">Developer</ui-option>
+      <ui-option value="designer">Designer</ui-option>
+      <ui-option value="pm">Product Manager</ui-option>
+      <ui-option value="qa">QA Engineer</ui-option>
+    </ui-select>
+
+    <ui-select
+      label="Level"
+      placeholder="Select a level (optional)"
+      formControlName="level"
+      [allowClear]="true">
+      <ui-option value="junior">Junior</ui-option>
+      <ui-option value="mid">Mid</ui-option>
+      <ui-option value="senior">Senior</ui-option>
+    </ui-select>
+  </div>
+
+  <div class="flex-row" style="margin-bottom: var(--sp-6);">
+    <ui-button variant="primary" type="submit">Submit</ui-button>
+    <ui-button variant="default" type="button" (clicked)="reset()">Reset</ui-button>
+  </div>
+</form>
+
+@if (submitted()) {
+  <div style="
+    max-width: 320px;
+    padding: var(--sp-4);
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--r-md);
+    font-size: var(--fs-sm);
+    font-family: monospace;
+  ">
+    <div style="font-weight: var(--fw-semibold); margin-bottom: var(--sp-2); font-family: inherit;">
+      Submitted value
+    </div>
+    <pre style="margin: 0;">{{ form.value | json }}</pre>
+  </div>
+}

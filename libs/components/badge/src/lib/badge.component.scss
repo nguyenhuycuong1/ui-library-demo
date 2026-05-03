@@ -1,0 +1,38 @@
+// Badge styles. Applied directly to :host since the badge IS the host element.
+// host { class: 'badge' } is set in the component decorator.
+
+:host {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: var(--fw-medium);
+  border-radius: var(--r-sm);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+// ---- Variants ----
+:host(.badge--neutral)    { background: var(--bg-muted);       color: var(--text-secondary); }
+:host(.badge--brand)      { background: var(--brand-50);       color: var(--brand-700); }
+:host(.badge--success)    { background: var(--success-50);     color: var(--success-700); }
+:host(.badge--warning)    { background: var(--warning-50);     color: var(--warning-700); }
+:host(.badge--danger)     { background: var(--danger-50);      color: var(--danger-700); }
+:host(.badge--info)       { background: var(--info-50);        color: var(--info-600); }
+:host(.badge--solid-brand){ background: var(--brand-600);      color: #fff; }
+:host(.badge--outline)    {
+  background: transparent;
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+}
+
+// ---- Dot indicator ----
+:host(.badge--dot)::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: currentColor;
+  flex-shrink: 0;
+}

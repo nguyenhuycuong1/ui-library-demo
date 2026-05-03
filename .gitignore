@@ -1,0 +1,7 @@
+node_modules
+dist
+tmp
+.cache
+.nx/cache
+*.js.map
+*.d.ts

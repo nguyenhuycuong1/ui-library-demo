@@ -1,0 +1,135 @@
+<span class="section-kicker">Core Service</span>
+<h1 class="section-title">OverlayService</h1>
+<p class="section-desc">
+  A lightweight overlay manager that tracks open overlay refs, locks body scroll
+  while any overlay is open, and lets the topmost overlay be closed via
+  <code>closeTop()</code> — wired to <kbd>ESC</kbd> on this page.
+</p>
+
+<!-- ---- OPEN COUNT ---- -->
+<div style="display:inline-flex; align-items:center; gap: var(--sp-3);
+            padding: var(--sp-3) var(--sp-4);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--r-md);
+            margin-bottom: var(--sp-6);
+            font-size: var(--fs-sm);">
+  <span style="color: var(--text-secondary);">overlay.openCount</span>
+  <strong style="font-size: var(--fs-xl); color: var(--brand-600); min-width: 1.5ch; text-align:center;">
+    {{ overlay.openCount }}
+  </strong>
+</div>
+
+<!-- ---- SINGLE OVERLAY ---- -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-4);">
+  Basic — single overlay
+</h2>
+<p style="font-size: var(--fs-sm); color: var(--text-secondary); margin-bottom: var(--sp-4);">
+  Opens one panel. Close via the panel's button, backdrop click, or <kbd>ESC</kbd>.
+</p>
+<div class="ex">
+  <ui-button variant="primary" (clicked)="openPanel('Settings')">Open Overlay</ui-button>
+</div>
+
+<!-- ---- STACKED OVERLAYS ---- -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-4);">
+  Stacking — multiple overlays
+</h2>
+<p style="font-size: var(--fs-sm); color: var(--text-secondary); margin-bottom: var(--sp-4);">
+  Each push adds a new ref to the stack. <code>closeTop()</code> removes only the last-registered
+  overlay; <kbd>ESC</kbd> does the same.
+</p>
+<div class="ex">
+  <ui-button variant="primary"  (clicked)="openPanel('Panel #' + (overlay.openCount + 1))">Push Overlay</ui-button>
+  <ui-button variant="default"  (clicked)="overlay.closeTop()"  [disabled]="overlay.openCount === 0">Close Top</ui-button>
+  <ui-button variant="danger"   (clicked)="closeAll()"          [disabled]="overlay.openCount === 0">Close All</ui-button>
+</div>
+
+<!-- ---- SCROLL LOCK NOTE ---- -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-4);">
+  Scroll locking
+</h2>
+<p style="font-size: var(--fs-sm); color: var(--text-secondary);">
+  <code>register()</code> sets <code>document.body.style.overflow = 'hidden'</code> when the
+  first overlay opens. <code>deregister()</code> restores it once the stack is empty.
+  Open an overlay above and try scrolling this page — the page won't scroll while a panel is open.
+</p>
+
+<!-- ---- API SUMMARY ---- -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-4);">
+  API
+</h2>
+<table style="width:100%; border-collapse:collapse; font-size: var(--fs-sm);">
+  <thead>
+    <tr style="text-align:left; border-bottom: 1px solid var(--border);">
+      <th style="padding: var(--sp-2) var(--sp-3); color:var(--text-secondary); font-weight:var(--fw-medium);">Member</th>
+      <th style="padding: var(--sp-2) var(--sp-3); color:var(--text-secondary); font-weight:var(--fw-medium);">Type</th>
+      <th style="padding: var(--sp-2) var(--sp-3); color:var(--text-secondary); font-weight:var(--fw-medium);">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (row of apiRows; track row.member) {
+      <tr style="border-bottom: 1px solid var(--border-subtle);">
+        <td style="padding: var(--sp-2) var(--sp-3);"><code>{{ row.member }}</code></td>
+        <td style="padding: var(--sp-2) var(--sp-3); color: var(--text-secondary);">{{ row.type }}</td>
+        <td style="padding: var(--sp-2) var(--sp-3); color: var(--text-secondary);">{{ row.desc }}</td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+<!-- ---- OVERLAY PANELS (rendered over everything) ---- -->
+@for (panel of panels(); track panel.id) {
+  <!-- backdrop — only show for the bottommost panel -->
+  @if (panel.offset === 0) {
+    <div
+      style="position:fixed; inset:0; background: var(--bg-overlay); z-index: 1390;"
+      (click)="overlay.closeTop()">
+    </div>
+  }
+
+  <!-- panel card -->
+  <div
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-label]="panel.title"
+    [style.position]="'fixed'"
+    [style.top]="'50%'"
+    [style.left]="'50%'"
+    [style.transform]="'translate(calc(-50% + ' + panel.offset + 'px), calc(-50% + ' + panel.offset + 'px))'"
+    [style.width]="'480px'"
+    [style.max-width]="'calc(100vw - 32px)'"
+    [style.background]="'var(--bg-elevated)'"
+    [style.border]="'1px solid var(--border)'"
+    [style.border-radius]="'var(--r-lg)'"
+    [style.box-shadow]="'0 20px 60px rgba(0,0,0,.25)'"
+    [style.z-index]="1400 + panel.offset"
+    [style.padding]="'var(--sp-6)'">
+
+    <!-- header -->
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: var(--sp-5);">
+      <strong style="font-size: var(--fs-lg);">{{ panel.title }}</strong>
+      <button
+        type="button"
+        style="background:none; border:none; cursor:pointer; color:var(--text-secondary);
+               font-size: var(--fs-xl); line-height:1; padding: var(--sp-1);"
+        (click)="closePanel(panel.id)">✕</button>
+    </div>
+
+    <!-- body -->
+    <p style="font-size: var(--fs-sm); color: var(--text-secondary); margin-bottom: var(--sp-6);">
+      This panel is registered with <code>OverlayService</code>. Its ref ID is
+      <code>{{ panel.id }}</code>. The current stack depth is
+      <strong>{{ overlay.openCount }}</strong>.
+    </p>
+
+    <!-- footer -->
+    <div style="display:flex; justify-content:flex-end; gap: var(--sp-3);">
+      <ui-button variant="primary" (clicked)="openPanel('Panel #' + (overlay.openCount + 1))">
+        Push another
+      </ui-button>
+      <ui-button variant="default" (clicked)="closePanel(panel.id)">Close this</ui-button>
+    </div>
+
+  </div>
+}

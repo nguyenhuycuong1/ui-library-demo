@@ -1,0 +1,8 @@
+{
+  "name": "patterns",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/patterns/src",
+  "projectType": "library",
+  "targets": {},
+  "tags": ["scope:patterns", "type:lib"]
+}

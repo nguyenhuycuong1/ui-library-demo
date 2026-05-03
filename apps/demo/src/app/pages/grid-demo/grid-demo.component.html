@@ -1,0 +1,215 @@
+<span class="section-kicker">Layout</span>
+<h1 class="section-title">Grid System</h1>
+<p class="section-desc">
+  12-column flex grid matching Bootstrap's class API. Gutter width is a CSS custom
+  property (<code>--grid-gutter</code>) so <code>.g-0</code> → <code>.g-5</code>
+  on a <code>.row</code> cascade automatically into all column padding. Breakpoints:
+  <strong>sm 576 / md 768 / lg 992 / xl 1200 / 2xl 1400 px</strong>.
+</p>
+
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- 1. Equal columns                                                   -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-3);">
+  1. Equal columns — <code style="font-size: var(--fs-sm); color: var(--text-brand); background: var(--brand-50); padding: 2px 6px; border-radius: var(--r-sm);">.col</code>
+</h2>
+<div class="ex ex--col" style="margin-bottom: var(--sp-5);">
+  <div class="row demo-row">
+    <div class="col"><div class="col-box">col</div></div>
+    <div class="col"><div class="col-box">col</div></div>
+    <div class="col"><div class="col-box">col</div></div>
+  </div>
+  <div class="row demo-row">
+    <div class="col"><div class="col-box">col</div></div>
+    <div class="col"><div class="col-box">col</div></div>
+    <div class="col"><div class="col-box">col</div></div>
+    <div class="col"><div class="col-box">col</div></div>
+    <div class="col"><div class="col-box">col</div></div>
+    <div class="col"><div class="col-box">col</div></div>
+  </div>
+  <div class="row demo-row">
+    <div class="col-auto"><div class="col-box">col-auto</div></div>
+    <div class="col"><div class="col-box">col (fill)</div></div>
+    <div class="col-auto"><div class="col-box">col-auto</div></div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- 2. Fixed widths                                                    -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-3);">
+  2. Fixed widths — <code style="font-size: var(--fs-sm); color: var(--text-brand); background: var(--brand-50); padding: 2px 6px; border-radius: var(--r-sm);">.col-{{ '{' }}n{{ '}' }}</code>
+</h2>
+<div class="ex ex--col" style="margin-bottom: var(--sp-5);">
+  @for (n of halfCols; track n) {
+    <div class="row demo-row">
+      <div [class]="'col-' + n">
+        <div class="col-box">.col-{{ n }}</div>
+      </div>
+      <div [class]="'col-' + (12 - n)">
+        <div class="col-box col-box--muted">.col-{{ 12 - n }}</div>
+      </div>
+    </div>
+  }
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- 3. Responsive                                                      -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-3);">
+  3. Responsive — <code style="font-size: var(--fs-sm); color: var(--text-brand); background: var(--brand-50); padding: 2px 6px; border-radius: var(--r-sm);">.col-12 .col-md-6 .col-lg-4</code>
+</h2>
+<p style="font-size: var(--fs-sm); color: var(--text-secondary); margin: 0 0 var(--sp-4);">
+  Resize the window: 1-col on mobile → 2-col on tablet → 3-col on desktop.
+</p>
+<div class="ex ex--col" style="margin-bottom: var(--sp-5);">
+  <div class="row g-4 demo-row">
+    @for (card of cards; track card.label) {
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="demo-card">
+          <div class="demo-card__label">{{ card.label }}</div>
+          <div class="demo-card__sub">col-12 | col-md-6 | col-lg-4</div>
+        </div>
+      </div>
+    }
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- 4. Gutters                                                         -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-3);">
+  4. Gutters — <code style="font-size: var(--fs-sm); color: var(--text-brand); background: var(--brand-50); padding: 2px 6px; border-radius: var(--r-sm);">.g-{{ '{' }}0–5{{ '}' }}</code>
+</h2>
+<div class="ex ex--col" style="margin-bottom: var(--sp-5);">
+  @for (g of gutters; track g.cls) {
+    <p class="gap-label">.row.{{ g.cls }} — {{ g.size }}</p>
+    <div [class]="'row demo-row ' + g.cls">
+      <div class="col-4"><div class="col-box">col-4</div></div>
+      <div class="col-4"><div class="col-box">col-4</div></div>
+      <div class="col-4"><div class="col-box">col-4</div></div>
+    </div>
+  }
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- 5. Alignment                                                       -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-3);">
+  5. Alignment — <code style="font-size: var(--fs-sm); color: var(--text-brand); background: var(--brand-50); padding: 2px 6px; border-radius: var(--r-sm);">.align-items-{{ '{' }}start|center|end{{ '}' }}</code>
+</h2>
+<div class="ex ex--col" style="margin-bottom: var(--sp-5);">
+  @for (a of alignments; track a) {
+    <p class="gap-label">.row.align-items-{{ a }}</p>
+    <div [class]="'row demo-row align-demo align-items-' + a">
+      <div class="col-4"><div class="col-box">short</div></div>
+      <div class="col-4">
+        <div class="col-box" style="min-height: 64px;">tall</div>
+      </div>
+      <div class="col-4"><div class="col-box">short</div></div>
+    </div>
+  }
+  <p class="gap-label">.row.justify-content-between</p>
+  <div class="row demo-row justify-content-between">
+    <div class="col-3"><div class="col-box">col-3</div></div>
+    <div class="col-3"><div class="col-box">col-3</div></div>
+    <div class="col-3"><div class="col-box">col-3</div></div>
+  </div>
+  <p class="gap-label">.row.justify-content-center</p>
+  <div class="row demo-row justify-content-center">
+    <div class="col-3"><div class="col-box">col-3</div></div>
+    <div class="col-3"><div class="col-box">col-3</div></div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- 6. Offset                                                          -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-3);">
+  6. Offset — <code style="font-size: var(--fs-sm); color: var(--text-brand); background: var(--brand-50); padding: 2px 6px; border-radius: var(--r-sm);">.offset-{{ '{' }}bp{{ '}' }}-{{ '{' }}n{{ '}' }}</code>
+</h2>
+<div class="ex ex--col" style="margin-bottom: var(--sp-5);">
+  <div class="row demo-row">
+    <div class="col-4 offset-md-4">
+      <div class="col-box">col-4 offset-md-4</div>
+    </div>
+  </div>
+  <div class="row demo-row">
+    <div class="col-3 offset-md-3">
+      <div class="col-box">col-3 offset-md-3</div>
+    </div>
+    <div class="col-3 offset-md-3">
+      <div class="col-box">col-3 offset-md-3</div>
+    </div>
+  </div>
+  <div class="row demo-row">
+    <div class="col-6 offset-md-3">
+      <div class="col-box">col-6 offset-md-3</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- 7. Order                                                           -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-3);">
+  7. Order — <code style="font-size: var(--fs-sm); color: var(--text-brand); background: var(--brand-50); padding: 2px 6px; border-radius: var(--r-sm);">.order-{{ '{' }}first|0–5|last{{ '}' }}</code>
+</h2>
+<p style="font-size: var(--fs-sm); color: var(--text-secondary); margin: 0 0 var(--sp-4);">
+  HTML order: A → B → C. Rendered order: C (first) → B (2) → A (last).
+</p>
+<div class="ex ex--col" style="margin-bottom: var(--sp-9);">
+  <div class="row demo-row">
+    <div class="col order-last">
+      <div class="col-box" style="flex-direction:column; gap:4px;">
+        <span>A — 1st in DOM</span>
+        <span style="font-weight:400; color: var(--text-tertiary);">.order-last</span>
+      </div>
+    </div>
+    <div class="col order-2">
+      <div class="col-box" style="flex-direction:column; gap:4px;">
+        <span>B — 2nd in DOM</span>
+        <span style="font-weight:400; color: var(--text-tertiary);">.order-2</span>
+      </div>
+    </div>
+    <div class="col order-first">
+      <div class="col-box" style="flex-direction:column; gap:4px;">
+        <span>C — 3rd in DOM</span>
+        <span style="font-weight:400; color: var(--text-tertiary);">.order-first</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- CSS Token reference                                                -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-3);">CSS Token reference</h2>
+<div class="ex ex--col">
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Token</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of tokenRows; track row.token) {
+        <tr>
+          <td><code>{{ row.token }}</code></td>
+          <td><code>{{ row.value }}</code></td>
+          <td style="color: var(--text-secondary);">{{ row.desc }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

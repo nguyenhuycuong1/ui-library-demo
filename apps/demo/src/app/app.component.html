@@ -1,0 +1,74 @@
+<div class="app-layout">
+
+  <!-- Sidebar -->
+  <aside class="app-sidebar">
+    <div class="app-sidebar__brand">
+      <div class="app-sidebar__logo">U</div>
+      <span class="app-sidebar__title">Enterprise UI</span>
+    </div>
+
+    @for (group of nav; track group.group) {
+      <div class="app-sidebar__group">{{ group.group }}</div>
+      @for (item of group.items; track item.route) {
+        <a class="app-nav-item"
+           [routerLink]="item.route"
+           routerLinkActive="active">
+          {{ item.label }}
+        </a>
+      }
+    }
+  </aside>
+
+  <!-- Content -->
+  <div class="app-content">
+
+    <!-- Top bar -->
+    <header class="app-topbar">
+      <span style="font-size: var(--fs-sm); color: var(--text-secondary);">
+        Enterprise UI Library
+      </span>
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <!-- Brand colour swatches -->
+        <div style="display:flex; gap: 10px; align-items: center;">
+          @for (s of brandSwatches; track s.id) {
+            <button
+              type="button"
+              [title]="s.label"
+              [style.background]="s.color"
+              [style.outline]="activeSwatch() === s.id ? '2px solid ' + s.color : 'none'"
+              [style.outline-offset]="'2px'"
+              style="width:18px; height:18px; border-radius:50%; border:none; cursor:pointer;
+                     transition: transform 120ms;"
+              [style.transform]="activeSwatch() === s.id ? 'scale(1.25)' : 'scale(1)'"
+              (click)="switchBrand(s)">
+            </button>
+          }
+        </div>
+
+        <div style="width:1px; height:16px; background: var(--border-default);"></div>
+
+        <!-- Density toggle -->
+        <ui-button variant="default" (click)="theme.cycleDensity()" type="button">
+          {{ theme.density() | titlecase }}
+        </ui-button>
+        <!-- Theme toggle -->
+        <ui-button variant="default" (click)="theme.toggleTheme()" type="button">
+          @if (theme.theme() === 'light') {
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <ui-icon name="moon" size="sm"></ui-icon> Dark
+            </div>
+          } @else {
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <ui-icon name="sun" size="sm"></ui-icon> Light
+            </div>
+          }
+        </ui-button>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <router-outlet />
+    </main>
+
+  </div>
+</div>
