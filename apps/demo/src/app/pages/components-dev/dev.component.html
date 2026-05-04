@@ -6,8 +6,14 @@
   Standalone — allowClear
 </h2>
 <div class="ex" style="max-width: 320px;">
-  <ui-select label="Options" placeholder="Select an option" [allowClear]="true"
-    [ngModel]="selected()" (ngModelChange)="selected.set($event)">
+  <ui-select
+    label="Options"
+    placeholder="Select an option"
+    [allowClear]="true"
+    [allowSearch]="true"
+    [ngModel]="selected()"
+    (ngModelChange)="selected.set($event)"
+  >
     <ui-option value="option1">Option 1</ui-option>
     <ui-option value="option2">Option 2</ui-option>
     <ui-option value="option3">Option 3</ui-option>
@@ -26,7 +32,10 @@
       placeholder="Select a role"
       formControlName="role"
       [required]="true"
-      [error]="roleError">
+      [error]="roleError"
+      [hint]="'Please select your role'"
+      [allowClear]="true"
+    >
       <ui-option value="developer">Developer</ui-option>
       <ui-option value="designer">Designer</ui-option>
       <ui-option value="pm">Product Manager</ui-option>

@@ -6,6 +6,7 @@ import {
   HostListener,
   Input,
   inject,
+  signal,
 } from '@angular/core';
 import { SELECT_CONTEXT } from './select.types';
 
@@ -23,6 +24,13 @@ export class OptionComponent {
 
   @Input() value    = '';
   @Input() disabled = false;
+
+  private readonly _hidden = signal(false);
+
+  @HostBinding('class.is-hidden')
+  get isHidden(): boolean { return this._hidden(); }
+
+  setHidden(v: boolean): void { this._hidden.set(v); }
 
   @HostBinding('class.is-selected')
   get isSelected(): boolean {

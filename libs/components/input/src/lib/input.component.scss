@@ -1,45 +1,15 @@
 // Input / Field component styles.
 // All color/size values reference CSS custom properties from libs/tokens.
 
+@use 'components/control' as ctrl;
+
 :host {
   display: block;
   width: 100%;
 }
 
-// ---- Field wrapper ----
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  min-width: 0;
-}
-
-.field__label {
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-medium);
-  color: var(--text-primary);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.field__required {
-  color: var(--danger-600);
-  margin-left: 2px;
-}
-
-.field__help {
-  font-size: var(--fs-xs);
-  color: var(--text-tertiary);
-}
-
-.field__error {
-  font-size: var(--fs-xs);
-  color: var(--danger-600);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
+@include ctrl.field-layout;
+@include ctrl.field-error('.input, .input-group', '.input:focus, .input-group:focus-within');
 
 // ---- Input control ----
 .input {
@@ -122,16 +92,3 @@
 
 .input-group__prefix { border-right: 1px solid var(--border-subtle); }
 .input-group__suffix { border-left:  1px solid var(--border-subtle); }
-
-// ---- Error state ----
-.field.is-error {
-  .input,
-  .input-group {
-    border-color: var(--danger-500);
-  }
-
-  .input:focus,
-  .input-group:focus-within {
-    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18);
-  }
-}

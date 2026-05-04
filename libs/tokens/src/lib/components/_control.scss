@@ -1,0 +1,50 @@
+// Shared field layout and messaging styles for form controls.
+// Usage in any component SCSS (includePaths already points to libs/tokens/src/lib):
+//   @use 'components/control' as ctrl;
+//   @include ctrl.field-layout;
+//   @include ctrl.field-error('.my-control', '.my-control:focus');
+
+@mixin field-layout {
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .field__label {
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-medium);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .field__required {
+    color: var(--danger-600);
+    margin-left: 2px;
+  }
+
+  .field__help {
+    font-size: var(--fs-xs);
+    color: var(--text-tertiary);
+  }
+
+  .field__error {
+    font-size: var(--fs-xs);
+    color: var(--danger-600);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+}
+
+// $control — selector(s) that get a danger border  (e.g. '.input, .input-group')
+// $focus   — selector(s) that get a danger ring    (e.g. '.input:focus, .input-group:focus-within')
+@mixin field-error($control, $focus) {
+  .field.is-error {
+    #{$control} { border-color: var(--danger-500); }
+    #{$focus}   { box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18); }
+  }
+}

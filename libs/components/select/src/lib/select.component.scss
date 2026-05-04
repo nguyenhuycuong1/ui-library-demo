@@ -1,50 +1,20 @@
 // Select component styles.
 // All values use CSS custom properties from libs/tokens.
 
+@use 'components/control' as ctrl;
+
 :host {
   display: block;
   position: relative;
   width: 100%;
 }
 
-// ---- Field wrapper ----
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  min-width: 0;
-}
-
-.field__label {
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-medium);
-  color: var(--text-primary);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.field__required {
-  color: var(--danger-600);
-  margin-left: 2px;
-}
-
-.field__help {
-  font-size: var(--fs-xs);
-  color: var(--text-tertiary);
-}
-
-.field__error {
-  font-size: var(--fs-xs);
-  color: var(--danger-600);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
+@include ctrl.field-layout;
+@include ctrl.field-error('.select__wrapper', '.select__wrapper.focus');
 
 // ---- Select field ----
 
-.select__control {
+.select__wrapper {
   display: flex;
   align-items: center;
   gap: var(--sp-3);
@@ -84,6 +54,17 @@
   }
 
   &[aria-readonly] { background: var(--bg-subtle); cursor: default; }
+}
+
+.select__control {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  outline: none;
+  border: none;
+  caret-color: var(--text-primary);
 }
 
 .select__value {
@@ -142,6 +123,12 @@
 .select__control--sm { height: var(--ctrl-h-sm); }
 .select__control--lg { height: var(--ctrl-h-lg); padding: 0 12px; }
 
+.select__no-data {
+  padding: 8px 10px;
+  font-size: var(--fs-sm);
+  color: var(--text-tertiary);
+  text-align: center;
+}
 
 .select__options {
   position: absolute;
