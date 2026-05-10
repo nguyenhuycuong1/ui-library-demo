@@ -3,13 +3,22 @@ import { JsonPipe } from '@angular/common';
 import {FormBuilder, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import { SelectComponent, OptionComponent } from '@ui/select';
 import { ButtonComponent } from '@ui/button';
+import { DatePickerComponent } from '@ui/date-picker'
 
 @Component({
   selector: 'dev-page',
   standalone: true,
   templateUrl: './dev.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [SelectComponent, OptionComponent, ButtonComponent, ReactiveFormsModule, JsonPipe, FormsModule],
+  imports: [
+    SelectComponent,
+    OptionComponent,
+    ButtonComponent,
+    ReactiveFormsModule,
+    JsonPipe,
+    FormsModule,
+    DatePickerComponent
+  ],
 })
 export class DevComponent {
   protected readonly selected = signal('');

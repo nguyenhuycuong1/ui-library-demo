@@ -42,7 +42,7 @@ import type { InputSize, InputType } from './input.types';
 export class InputComponent extends BaseFormControl<string> {
   @Input() label       = '';
   @Input() placeholder = '';
-  @Input() type: InputType  = 'text';
+  @Input() type: InputType  = 'text'                                                                                                                                                                            ;
   @Input() size: InputSize  = 'md';
   @Input() required    = false;
   @Input() readonly    = false;

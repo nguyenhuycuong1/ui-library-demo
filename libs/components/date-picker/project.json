@@ -1,0 +1,8 @@
+{
+  "name": "date-picker",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/components/date-picker/src",
+  "projectType": "library",
+  "targets": {},
+  "tags": ["scope:components", "type:lib"]
+}

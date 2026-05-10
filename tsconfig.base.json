@@ -28,17 +28,26 @@
       "@ui/core": [
         "libs/core/src/index.ts"
       ],
+      "@ui/date-picker": [
+        "libs/components/date-picker/src/index.ts"
+      ],
       "@ui/icon": [
         "libs/components/icon/src/index.ts"
       ],
       "@ui/input": [
         "libs/components/input/src/index.ts"
       ],
+      "@ui/pagination": [
+        "libs/components/pagination/src/index.ts"
+      ],
       "@ui/patterns": [
         "libs/patterns/src/index.ts"
       ],
       "@ui/select": [
         "libs/components/select/src/index.ts"
+      ],
+      "@ui/tab": [
+        "libs/components/tab/src/index.ts"
       ],
       "@ui/theme": [
         "libs/theme/src/index.ts"

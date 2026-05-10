@@ -5,11 +5,14 @@
       <project name="badge" file="file://$PROJECT_DIR$/libs/components/badge/project.json" />
       <project name="button" file="file://$PROJECT_DIR$/libs/components/button/project.json" />
       <project name="core" file="file://$PROJECT_DIR$/libs/core/project.json" />
+      <project name="date-picker" file="file://$PROJECT_DIR$/libs/components/date-picker/project.json" />
       <project name="demo" file="file://$PROJECT_DIR$/apps/demo/project.json" />
       <project name="icon" file="file://$PROJECT_DIR$/libs/components/icon/project.json" />
       <project name="input" file="file://$PROJECT_DIR$/libs/components/input/project.json" />
+      <project name="pagination" file="file://$PROJECT_DIR$/libs/components/pagination/project.json" />
       <project name="patterns" file="file://$PROJECT_DIR$/libs/patterns/project.json" />
       <project name="select" file="file://$PROJECT_DIR$/libs/components/select/project.json" />
+      <project name="tab" file="file://$PROJECT_DIR$/libs/components/tab/project.json" />
       <project name="theme" file="file://$PROJECT_DIR$/libs/theme/project.json" />
       <project name="tokens" file="file://$PROJECT_DIR$/libs/tokens/project.json" />
     </projects>

@@ -1,0 +1,30 @@
+<div class="tabs__nav" role="tablist">
+  @for (tab of tabList; track $index) {
+    <button
+      class="tabs__tab"
+      [class.is-active]="$index === activeIndex"
+      [class.is-disabled]="tab.disabled"
+      [attr.aria-selected]="$index === activeIndex"
+      [attr.tabindex]="$index === activeIndex ? '0' : '-1'"
+      [disabled]="tab.disabled || null"
+      (click)="select($index)"
+      role="tab"
+      type="button">
+      {{ tab.label }}
+    </button>
+  }
+</div>
+
+<div class="tabs__body">
+  @for (tab of tabList; track $index) {
+    <div
+      class="tabs__panel"
+      [class.is-active]="$index === activeIndex"
+      role="tabpanel"
+      [attr.aria-hidden]="$index !== activeIndex">
+      @if ($index === activeIndex) {
+        <ng-container *ngTemplateOutlet="tab.content" />
+      }
+    </div>
+  }
+</div>

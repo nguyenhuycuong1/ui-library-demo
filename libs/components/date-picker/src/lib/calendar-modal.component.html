@@ -1,0 +1,36 @@
+<div class="calendar-modal__box">
+  <div class="calendar-modal__header">
+    <div>
+      <ui-icon
+        class="calendar-modal__nav-btn"
+        name="chevrons-left"
+        size="sm"
+        (click)="handlePrevYear()"
+      ></ui-icon>
+      <ui-icon
+        class="calendar-modal__nav-btn"
+        name="chevron-left"
+        size="sm"
+        (click)="handlePrevMonth()"
+      ></ui-icon>
+    </div>
+    <div class="calendar-modal__header-label">
+      <span>{{currentMonthName()}},</span>
+      <span>{{currentYear()}}</span>
+    </div>
+    <div>
+      <ui-icon
+        class="calendar-modal__nav-btn"
+        name="chevron-right"
+        size="sm"
+        (click)="handleNextMonth()"
+      ></ui-icon>
+      <ui-icon
+        class="calendar-modal__nav-btn"
+        name="chevrons-right"
+        size="sm"
+        (click)="handleNextYear()"
+      ></ui-icon>
+    </div>
+  </div>
+</div>

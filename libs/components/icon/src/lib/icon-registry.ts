@@ -35,6 +35,12 @@ export const ICON_REGISTRY: Record<IconName, string> = {
   'chevron-right':
     '<path d="m8.25 4.5 7.5 7.5-7.5 7.5"/>',
 
+  'chevrons-left':
+    '<path d="M18.75 19.5 11.25 12l7.5-7.5m-6 15L5.25 12l7.5-7.5"/>',
+
+  'chevrons-right':
+    '<path d="M5.25 4.5 12.75 12l-7.5 7.5m6-15 7.5 7.5-7.5 7.5"/>',
+
   // ── UI Controls ───────────────────────────────────────────────────────────
 
   'menu':

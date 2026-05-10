@@ -1,0 +1,100 @@
+<span class="section-kicker">Components</span>
+<h1 class="section-title">Pagination</h1>
+<p class="section-desc">
+  Allows users to navigate across a paged data set. Supports three sizes,
+  first/last shortcuts, smart ellipsis, and full keyboard accessibility.
+</p>
+
+<!-- Sizes -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-3);">
+  Sizes
+</h2>
+<div class="ex ex--col" style="margin-bottom: var(--sp-5);">
+  <span class="ex__label">Small</span>
+  <ui-pagination
+    size="sm"
+    [totalItems]="100"
+    [pageSize]="10"
+    [page]="page1()"
+    (pageChange)="page1.set($event)" />
+
+  <span class="ex__label">Medium (default)</span>
+  <ui-pagination
+    size="md"
+    [totalItems]="100"
+    [pageSize]="10"
+    [page]="page1()"
+    (pageChange)="page1.set($event)" />
+
+  <span class="ex__label">Large</span>
+  <ui-pagination
+    size="lg"
+    [totalItems]="100"
+    [pageSize]="10"
+    [page]="page1()"
+    (pageChange)="page1.set($event)" />
+</div>
+
+<!-- Ellipsis behaviour -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-3);">
+  Ellipsis &amp; page range
+</h2>
+<div class="ex ex--col" style="margin-bottom: var(--sp-5);">
+  <span class="ex__label">Many pages — start (page {{ page2() }})</span>
+  <ui-pagination
+    [totalItems]="500"
+    [pageSize]="10"
+    [page]="page2()"
+    (pageChange)="page2.set($event)" />
+
+  <span class="ex__label">Many pages — middle (page {{ page3() }})</span>
+  <ui-pagination
+    [totalItems]="500"
+    [pageSize]="10"
+    [page]="page3()"
+    [siblingCount]="1"
+    (pageChange)="page3.set($event)" />
+
+  <span class="ex__label">Many pages — end (page {{ page4() }})</span>
+  <ui-pagination
+    [totalItems]="500"
+    [pageSize]="10"
+    [page]="page4()"
+    (pageChange)="page4.set($event)" />
+</div>
+
+<!-- Without first/last -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-3);">
+  Without first / last buttons
+</h2>
+<div class="ex ex--col" style="margin-bottom: var(--sp-5);">
+  <ui-pagination
+    [totalItems]="200"
+    [pageSize]="10"
+    [page]="page5()"
+    [showFirstLast]="false"
+    (pageChange)="page5.set($event)" />
+</div>
+
+<!-- Disabled -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-3);">
+  Disabled
+</h2>
+<div class="ex ex--col" style="margin-bottom: var(--sp-5);">
+  <ui-pagination
+    [totalItems]="100"
+    [pageSize]="10"
+    [page]="4"
+    [disabled]="true" />
+</div>
+
+<!-- Few pages (no ellipsis) -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-3);">
+  Few pages (no ellipsis)
+</h2>
+<div class="ex ex--col" style="margin-bottom: var(--sp-5);">
+  <ui-pagination
+    [totalItems]="50"
+    [pageSize]="10"
+    [page]="2" />
+</div>

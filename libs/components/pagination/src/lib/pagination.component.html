@@ -1,0 +1,61 @@
+<nav
+  [class]="'pagination pagination--' + size"
+  [attr.aria-label]="'Pagination'"
+  [class.pagination--disabled]="disabled">
+
+  @if (showFirstLast) {
+    <button
+      type="button"
+      class="pagination__btn pagination__btn--nav"
+      [attr.aria-label]="'First page'"
+      [disabled]="isFirst || disabled"
+      (click)="firstPage()">
+      <ui-icon name="chevrons-left" size="sm" />
+    </button>
+  }
+
+  <button
+    type="button"
+    class="pagination__btn pagination__btn--nav"
+    [attr.aria-label]="'Previous page'"
+    [disabled]="isFirst || disabled"
+    (click)="prevPage()">
+    <ui-icon name="chevron-left" size="sm" />
+  </button>
+
+  @for (p of pages; track p) {
+    @if (p === '...') {
+      <span class="pagination__ellipsis" aria-hidden="true">…</span>
+    } @else {
+      <button
+        type="button"
+        [class]="'pagination__btn' + (p === page ? ' pagination__btn--active' : '')"
+        [attr.aria-label]="'Page ' + p"
+        [attr.aria-current]="p === page ? 'page' : null"
+        [disabled]="disabled"
+        (click)="goToPage(p)">
+        {{ p }}
+      </button>
+    }
+  }
+
+  <button
+    type="button"
+    class="pagination__btn pagination__btn--nav"
+    [attr.aria-label]="'Next page'"
+    [disabled]="isLast || disabled"
+    (click)="nextPage()">
+    <ui-icon name="chevron-right" size="sm" />
+  </button>
+
+  @if (showFirstLast) {
+    <button
+      type="button"
+      class="pagination__btn pagination__btn--nav"
+      [attr.aria-label]="'Last page'"
+      [disabled]="isLast || disabled"
+      (click)="lastPage()">
+      <ui-icon name="chevrons-right" size="sm" />
+    </button>
+  }
+</nav>

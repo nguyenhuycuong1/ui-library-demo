@@ -1,16 +1,54 @@
 // Select component styles.
 // All values use CSS custom properties from libs/tokens.
 
-@use 'components/control' as ctrl;
-
 :host {
   display: block;
   position: relative;
   width: 100%;
 }
 
-@include ctrl.field-layout;
-@include ctrl.field-error('.select__wrapper', '.select__wrapper.focus');
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.field__label {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.field__required {
+  color: var(--danger-600);
+  margin-left: 2px;
+}
+
+.field__help {
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+}
+
+.field__error {
+  font-size: var(--fs-xs);
+  color: var(--danger-600);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.field.is-error {
+  .select__wrapper {
+    border-color: var(--danger-500);
+  }
+  .select__wrapper.focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18);
+  }
+}
 
 // ---- Select field ----
 
@@ -64,6 +102,7 @@
   background: transparent;
   outline: none;
   border: none;
+  color: var(--text-primary);
   caret-color: var(--text-primary);
 }
 
@@ -146,4 +185,9 @@
   max-height: 240px;
   overflow-y: auto;
   padding: 4px;
+}
+
+:host:has(.field__error) .select__options,
+:host:has(.field__help) .select__options{
+  top: calc(100% - 18px);
 }

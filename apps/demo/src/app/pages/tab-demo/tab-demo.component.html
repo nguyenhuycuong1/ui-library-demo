@@ -1,0 +1,105 @@
+<span class="section-kicker">Components</span>
+<h1 class="section-title">Tabs</h1>
+<p class="section-desc">
+  Organise content into switchable panels. Supports three visual variants,
+  three sizes, disabled tabs, and two-way binding via <code>[(activeIndex)]</code>.
+</p>
+
+<!-- Line (default) -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-3);">
+  Line (default)
+</h2>
+<div class="ex ex--col" style="margin-bottom: var(--sp-5);">
+  <ui-tabs variant="line" [(activeIndex)]="activeLine">
+    <ui-tab label="Overview">
+      <p style="color: var(--text-secondary); font-size: var(--fs-base);">
+        This is the <strong>Overview</strong> panel. Active index: {{ activeLine() }}.
+      </p>
+    </ui-tab>
+    <ui-tab label="Analytics">
+      <p style="color: var(--text-secondary); font-size: var(--fs-base);">
+        This is the <strong>Analytics</strong> panel with charts and metrics.
+      </p>
+    </ui-tab>
+    <ui-tab label="Settings">
+      <p style="color: var(--text-secondary); font-size: var(--fs-base);">
+        Configure your <strong>Settings</strong> here.
+      </p>
+    </ui-tab>
+    <ui-tab label="Disabled" [disabled]="true">
+      <p>You should not see this.</p>
+    </ui-tab>
+  </ui-tabs>
+</div>
+
+<!-- Boxed -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-3);">
+  Boxed
+</h2>
+<div class="ex ex--col" style="margin-bottom: var(--sp-5);">
+  <ui-tabs variant="boxed" [(activeIndex)]="activeBoxed">
+    <ui-tab label="Dashboard">
+      <p style="color: var(--text-secondary); font-size: var(--fs-base);">
+        <strong>Dashboard</strong> content goes here.
+      </p>
+    </ui-tab>
+    <ui-tab label="Reports">
+      <p style="color: var(--text-secondary); font-size: var(--fs-base);">
+        <strong>Reports</strong> and export options.
+      </p>
+    </ui-tab>
+    <ui-tab label="Team">
+      <p style="color: var(--text-secondary); font-size: var(--fs-base);">
+        Manage your <strong>Team</strong> members.
+      </p>
+    </ui-tab>
+  </ui-tabs>
+</div>
+
+<!-- Pills -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-3);">
+  Pills
+</h2>
+<div class="ex ex--col" style="margin-bottom: var(--sp-5);">
+  <ui-tabs variant="pills" [(activeIndex)]="activePills">
+    <ui-tab label="All">
+      <p style="color: var(--text-secondary); font-size: var(--fs-base);">Showing <strong>all</strong> items.</p>
+    </ui-tab>
+    <ui-tab label="Active">
+      <p style="color: var(--text-secondary); font-size: var(--fs-base);">Showing <strong>active</strong> items only.</p>
+    </ui-tab>
+    <ui-tab label="Archived">
+      <p style="color: var(--text-secondary); font-size: var(--fs-base);">Showing <strong>archived</strong> items.</p>
+    </ui-tab>
+    <ui-tab label="Locked" [disabled]="true">
+      <p>Hidden.</p>
+    </ui-tab>
+  </ui-tabs>
+</div>
+
+<!-- Sizes -->
+<h2 style="font-size: var(--fs-lg); font-weight: var(--fw-semibold); margin: var(--sp-7) 0 var(--sp-3);">
+  Sizes
+</h2>
+<div class="ex ex--col" style="margin-bottom: var(--sp-5);">
+  <span class="ex__label">Small</span>
+  <ui-tabs variant="line" size="sm">
+    <ui-tab label="Tab One"><p style="color: var(--text-secondary); font-size: var(--fs-base);">Content for Tab One.</p></ui-tab>
+    <ui-tab label="Tab Two"><p style="color: var(--text-secondary); font-size: var(--fs-base);">Content for Tab Two.</p></ui-tab>
+    <ui-tab label="Tab Three"><p style="color: var(--text-secondary); font-size: var(--fs-base);">Content for Tab Three.</p></ui-tab>
+  </ui-tabs>
+
+  <span class="ex__label">Medium (default)</span>
+  <ui-tabs variant="line" size="md">
+    <ui-tab label="Tab One"><p style="color: var(--text-secondary); font-size: var(--fs-base);">Content for Tab One.</p></ui-tab>
+    <ui-tab label="Tab Two"><p style="color: var(--text-secondary); font-size: var(--fs-base);">Content for Tab Two.</p></ui-tab>
+    <ui-tab label="Tab Three"><p style="color: var(--text-secondary); font-size: var(--fs-base);">Content for Tab Three.</p></ui-tab>
+  </ui-tabs>
+
+  <span class="ex__label">Large</span>
+  <ui-tabs variant="line" size="lg">
+    <ui-tab label="Tab One"><p style="color: var(--text-secondary); font-size: var(--fs-base);">Content for Tab One.</p></ui-tab>
+    <ui-tab label="Tab Two"><p style="color: var(--text-secondary); font-size: var(--fs-base);">Content for Tab Two.</p></ui-tab>
+    <ui-tab label="Tab Three"><p style="color: var(--text-secondary); font-size: var(--fs-base);">Content for Tab Three.</p></ui-tab>
+  </ui-tabs>
+</div>

@@ -32,6 +32,16 @@ export const routes: Routes = [
       import('./pages/icon-demo/icon-demo.component').then(m => m.IconDemoComponent),
   },
   {
+    path: 'pagination',
+    loadComponent: () =>
+      import('./pages/pagination-demo/pagination-demo.component').then(m => m.PaginationDemoComponent),
+  },
+  {
+    path: 'tabs',
+    loadComponent: () =>
+      import('./pages/tab-demo/tab-demo.component').then(m => m.TabDemoComponent),
+  },
+  {
     path: 'components-dev',
     loadComponent: () =>
       import('./pages/components-dev/dev.component').then(m => m.DevComponent),

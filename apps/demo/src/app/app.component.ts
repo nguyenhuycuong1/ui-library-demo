@@ -62,7 +62,9 @@ export class AppComponent {
       { label: 'Grid',        route: '/grid' },
     ]},
     { group: 'Components', items: [
-      { label: 'Controls',   route: '/components' },
+      { label: 'Controls',    route: '/components' },
+      { label: 'Pagination',  route: '/pagination' },
+      { label: 'Tabs',        route: '/tabs' },
     ]},
     { group: 'Services', items: [
       { label: 'Overlay',    route: '/overlay' },

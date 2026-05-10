@@ -1,0 +1,23 @@
+<div [ngClass]="fieldClasses">
+  @if (label) {
+    <label class="field__label">
+      {{ label }}
+      @if (required) {
+        <span class="field__required" aria-hidden="true">*</span>
+      }
+    </label>
+  }
+  <div class="input-group">
+    <input
+      #inputEl
+      class="input"
+      [placeholder]="placeholder"
+      (blur)="handleBlur()"
+    />
+    <ui-icon (click)="handleFocus()" class="input-group__suffix" [name]="'calendar'" [size]="'sm'"></ui-icon>
+  </div>
+</div>
+
+@if (open()) {
+  <ui-calendar-modal @dropdown (mousedown)="$event.preventDefault()"></ui-calendar-modal>
+}

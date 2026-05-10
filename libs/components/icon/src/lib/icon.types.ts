@@ -20,6 +20,8 @@ export type IconName =
   | 'chevron-down'
   | 'chevron-left'
   | 'chevron-right'
+  | 'chevrons-left'
+  | 'chevrons-right'
   // UI Controls
   | 'menu'
   | 'close'
