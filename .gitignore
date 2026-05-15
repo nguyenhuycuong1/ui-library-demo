@@ -3,5 +3,6 @@ dist
 tmp
 .cache
 .nx/cache
+.angular/cache
 *.js.map
 *.d.ts

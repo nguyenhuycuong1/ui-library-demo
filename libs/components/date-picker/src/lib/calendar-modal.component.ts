@@ -1,5 +1,6 @@
 import { Component, computed, signal } from '@angular/core'
 import { IconComponent } from '../../../icon/src'
+import { CalendarGridComponent } from './calendar-grid.component'
 
 @Component({
   selector: 'ui-calendar-modal',
@@ -7,7 +8,8 @@ import { IconComponent } from '../../../icon/src'
   styleUrl: './calendar-modal.component.scss',
   standalone: true,
   imports: [
-    IconComponent
+    IconComponent,
+    CalendarGridComponent,
   ],
 })
 export class CalendarModalComponent {
