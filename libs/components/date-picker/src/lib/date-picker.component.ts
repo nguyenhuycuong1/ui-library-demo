@@ -1,16 +1,24 @@
 import {
   ChangeDetectionStrategy,
-  Component, ElementRef,
+  Component,
+  ElementRef,
   forwardRef,
-  Input, signal, ViewChild,
+  inject,
+  Input,
+  OnInit,
+  signal,
+  ViewChild,
 } from '@angular/core'
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BaseFormControl } from '@ui/core';
-import type { DatePickerVariant } from './date-picker.types';
+import type { DateFormat, DatePickerVariant } from './date-picker.types'
 import { NgClass } from '@angular/common'
 import { IconComponent } from '@ui/icon'
 import { CalendarModalComponent } from './calendar-modal.component'
 import { animate, style, transition, trigger } from '@angular/animations'
+import { dateToStringWithFormat, stringToDateWithFormat } from '../../../../core/src/lib/time/time-parser'
+import { DatePickerService } from './services/date-picker.service'
+import { autoFormatDateInput, mapCursorToFormatted } from './ultils/date-picker.utils'
 
 @Component({
   selector: 'ui-date-picker',
@@ -24,6 +32,7 @@ import { animate, style, transition, trigger } from '@angular/animations'
   styleUrl: './date-picker.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
+    DatePickerService,
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => DatePickerComponent),
@@ -42,7 +51,9 @@ import { animate, style, transition, trigger } from '@angular/animations'
     ]),
   ],
 })
-export class DatePickerComponent extends BaseFormControl<string> {
+export class DatePickerComponent extends BaseFormControl<Date | null> implements OnInit {
+
+  @Input() format: DateFormat = 'DD/MM/YYYY';
   @Input() variant: DatePickerVariant = 'default';
   @Input() error: boolean = false;
   @Input() label: string = '';
@@ -53,10 +64,27 @@ export class DatePickerComponent extends BaseFormControl<string> {
 
   @ViewChild('inputEl') readonly inputEl?: ElementRef<HTMLInputElement>;
 
+  private readonly datePickerService = inject(DatePickerService);
+
   protected readonly open = signal(false);
+  protected readonly inputValue = signal('');
 
-  protected override emptyValue(): string { return ''; }
+  protected override emptyValue(): Date | null { return null; }
 
+  override writeValue(val: Date | null): void {
+    super.writeValue(val);
+    this.inputValue.set(val ? dateToStringWithFormat(val, this.format) : '');
+  }
+
+  override ngOnInit(): void {
+    this.datePickerService.selectedDate$.subscribe(date => {
+      if (date) {
+        this.emitChange(date);
+        this.inputValue.set(dateToStringWithFormat(date, this.format));
+        this.open.set(false);
+      }
+    });
+  }
 
   get fieldClasses(): Record<string, boolean> {
     return {
@@ -74,6 +102,30 @@ export class DatePickerComponent extends BaseFormControl<string> {
 
   handleBlur(): void {
     this.open.set(false);
+    const v = this._value();
+    this.inputValue.set(v ? dateToStringWithFormat(v, this.format) : '');
   }
 
+  handleInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const raw = input.value;
+    const cursorPos = input.selectionStart ?? raw.length;
+
+    const formatted = autoFormatDateInput(raw, this.format);
+    const newCursor = mapCursorToFormatted(raw, cursorPos, formatted);
+
+    input.value = formatted;
+    input.setSelectionRange(newCursor, newCursor);
+
+    this.inputValue.set(formatted);
+
+    if (!formatted) {
+      this.emitChange(null);
+      return;
+    }
+    const date = stringToDateWithFormat(formatted, this.format);
+    if (date) {
+      this.emitChange(date);
+    }
+  }
 }

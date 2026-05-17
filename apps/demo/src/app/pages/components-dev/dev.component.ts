@@ -24,6 +24,9 @@ export class DevComponent {
   protected readonly selected = signal('');
   protected readonly submitted = signal(false);
 
+  dateString: string = '12/05/2026';
+  date: Date | null = new Date();
+
   protected readonly form = new FormBuilder().nonNullable.group({
     role:  ['', Validators.required],
     level: [''],

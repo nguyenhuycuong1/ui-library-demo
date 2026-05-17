@@ -12,6 +12,8 @@
       #inputEl
       class="input"
       [placeholder]="placeholder"
+      [value]="inputValue()"
+      (input)="handleInput($event)"
       (blur)="handleBlur()"
     />
     <ui-icon (click)="handleFocus()" class="input-group__suffix" [name]="'calendar'" [size]="'sm'"></ui-icon>
@@ -19,5 +21,5 @@
 </div>
 
 @if (open()) {
-  <ui-calendar-modal @dropdown (mousedown)="$event.preventDefault()"></ui-calendar-modal>
+  <ui-calendar-modal @dropdown (mousedown)="$event.preventDefault()" [viewDate]="_value()"></ui-calendar-modal>
 }
